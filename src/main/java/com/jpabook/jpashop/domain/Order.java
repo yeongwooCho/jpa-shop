@@ -2,7 +2,9 @@ package com.jpabook.jpashop.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -14,6 +16,7 @@ import java.util.List;
 // DB 예약어에 order가 있어서 orders로 변경
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id
@@ -35,9 +38,6 @@ public class Order {
     private LocalDateTime orderDate;
 
     private OrderStatus status; // 주문 상태 [ORDER, CANCEL]
-
-    protected Order() {
-    }
 
     //==연관관계 메서드==//
     public void setMember(Member member) {

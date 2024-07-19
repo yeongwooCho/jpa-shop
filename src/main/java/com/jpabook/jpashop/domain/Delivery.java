@@ -1,12 +1,15 @@
 package com.jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Delivery {
     @Id
     @GeneratedValue
@@ -21,9 +24,6 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; // 배송상태 [READY, COMP]
-
-    protected Delivery() {
-    }
 
     //==생성 메서드==//
     public static Delivery createDelivery(Address address) {
