@@ -22,6 +22,8 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; // 배송상태 [READY, COMP]
 
+    protected Delivery() {
+    }
 
     //==생성 메서드==//
     public static Delivery createDelivery(Address address) {

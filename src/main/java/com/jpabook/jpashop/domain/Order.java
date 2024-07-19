@@ -36,6 +36,9 @@ public class Order {
 
     private OrderStatus status; // 주문 상태 [ORDER, CANCEL]
 
+    protected Order() {
+    }
+
     //==연관관계 메서드==//
     public void setMember(Member member) {
         this.member = member;
