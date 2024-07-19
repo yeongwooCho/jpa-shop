@@ -6,6 +6,7 @@ import com.jpabook.jpashop.domain.item.Item;
 import com.jpabook.jpashop.repository.ItemRepository;
 import com.jpabook.jpashop.repository.MemberRepository;
 import com.jpabook.jpashop.repository.OrderRepository;
+import jakarta.persistence.Persistence;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,13 @@ public class OrderService {
         // 주문 저장
         orderRepository.save(order);
         return order.getId();
+    }
+
+    // 주문 취소
+    @Transactional
+    public void cancelOrder(Long orderId) {
+        Order order = orderRepository.findOne(orderId);
+        order.cancel();
     }
 
 }
