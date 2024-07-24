@@ -6,10 +6,12 @@ import com.jpabook.jpashop.domain.item.Item;
 import com.jpabook.jpashop.repository.ItemRepository;
 import com.jpabook.jpashop.repository.MemberRepository;
 import com.jpabook.jpashop.repository.OrderRepository;
-import jakarta.persistence.Persistence;
+import com.jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -49,4 +51,7 @@ public class OrderService {
         order.cancel();
     }
 
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByCriteria(orderSearch);
+    }
 }
