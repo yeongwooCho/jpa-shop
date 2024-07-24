@@ -19,5 +19,9 @@ spring:
     # jpa 혹은 hibernate가 남기는 모든 로그는 debug 모드로 남기게 된다.
     # show_sql 은 System.out.print 로 남기게 되고, 이건 로그를 남긴다.
 
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
 # org.hibernate.type: trace #스프링 부트 2.x, hibernate5
 # org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
