@@ -8,7 +8,7 @@ spring:
   jpa:
     hibernate:
 
-      ddl-auto: none
+      ddl-auto: create
       # create: 애플리케이션 실행 시점에 테이블을 drop 하고, 다시 생성한다.
       # create-drop: 애플리케이션 종료 시점에 테이블을 drop 한다.
       # update: 애플리케이션 실행 시점에 테이블을 drop 하지 않고, 변경된 내용만 반영한다.
