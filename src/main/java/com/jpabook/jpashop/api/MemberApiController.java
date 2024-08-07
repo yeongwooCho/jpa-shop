@@ -1,21 +1,37 @@
 package com.jpabook.jpashop.api;
 
 
-import com.jpabook.jpashop.api.dto.CreateMemberRequest;
-import com.jpabook.jpashop.api.dto.CreateMemberResponse;
-import com.jpabook.jpashop.api.dto.UpdateMemberRequest;
-import com.jpabook.jpashop.api.dto.UpdateMemberResponse;
+import com.jpabook.jpashop.api.dto.*;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 public class MemberApiController {
 
     private final MemberService memberService;
+
+    @GetMapping("/api/v1/members")
+    public List<Member> membersV1() {
+        return memberService.findMembers();
+    }
+
+    @GetMapping("/api/v2/members")
+    public Result membersV2() {
+        List<Member> findMembers = memberService.findMembers();
+        List<MemberDto> collect = findMembers.stream()
+                .map(member -> new MemberDto(member.getName()))
+                .collect(Collectors.toList());
+
+        return new Result<>(collect.size() + "명의 회원이 조회되었습니다.", collect);
+    }
+
 
     @PostMapping("/api/v1/members")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member) {
